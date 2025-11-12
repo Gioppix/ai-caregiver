@@ -1,3 +1,3 @@
-declare module 'tailwind-variants/dist/config' {
-  export type { TVConfig };
+declare module "tailwind-variants/dist/config" {
+    export type { TVConfig };
 }
