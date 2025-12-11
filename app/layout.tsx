@@ -17,6 +17,11 @@ const geistMono = Geist_Mono({
 export const metadata: Metadata = {
     title: "AI Caregiver",
     description: "Assistente virtuale per anziani e caregiver",
+    icons: {
+        icon: "/logo.svg",
+        shortcut: "/logo.svg",
+        apple: "/logo.svg",
+    },
 };
 export default function RootLayout({
     children,

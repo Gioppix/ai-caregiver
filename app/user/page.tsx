@@ -8,6 +8,7 @@ import { HStack } from "@/components/ui/hstack";
 import { Card } from "@/components/ui/card";
 import { Badge, BadgeText } from "@/components/ui/badge";
 import { useState } from "react";
+import Image from "next/image";
 
 // Dati hardcoded
 const promemoria = [
@@ -54,29 +55,53 @@ export default function UserPage() {
         <Box className="h-screen w-full bg-background-0 p-6">
             <VStack space="xl" className="h-full">
                 {/* Header */}
-                <Box className="items-center py-4">
-                    <Text className="text-typography-900 font-bold text-4xl">
-                        Ciao, Giuseppe
-                    </Text>
-                    <Text className="text-typography-600 text-xl mt-2">
-                        {new Date().toLocaleDateString("it-IT", {
-                            weekday: "long",
-                            day: "numeric",
-                            month: "long",
-                        })}
-                    </Text>
-                </Box>
+                <HStack className="items-center justify-between py-4">
+                    <Image
+                        src="/logo.svg"
+                        alt="AI Caregiver"
+                        width={50}
+                        height={50}
+                    />
+                    <VStack space="xs" className="flex-1 ml-3">
+                        <Text
+                            className="font-bold text-4xl"
+                            style={{ color: "var(--brand-navy)" }}
+                        >
+                            Ciao, Giuseppe
+                        </Text>
+                        <Text className="text-typography-600 text-xl">
+                            {new Date().toLocaleDateString("it-IT", {
+                                weekday: "long",
+                                day: "numeric",
+                                month: "long",
+                            })}
+                        </Text>
+                    </VStack>
+                </HStack>
 
                 {/* Pulsante Assistente Vocale - Grande e centrale */}
-                <Card className="p-8 bg-primary-500 items-center justify-center flex-1 max-h-64">
+                <Card
+                    className="p-8 items-center justify-center flex-1 max-h-64"
+                    style={{ backgroundColor: "var(--brand-navy)" }}
+                >
                     <VStack space="lg" className="items-center">
                         <Button
                             size="xl"
-                            className={`w-24 h-24 rounded-full ${isListening ? "bg-error-500" : "bg-white"}`}
+                            className="w-24 h-24 rounded-full"
+                            style={{
+                                backgroundColor: isListening
+                                    ? "var(--brand-red)"
+                                    : "white",
+                            }}
                             onPress={() => setIsListening(!isListening)}
                         >
                             <ButtonText
-                                className={`text-4xl ${isListening ? "text-white" : "text-primary-500"}`}
+                                className="text-4xl"
+                                style={{
+                                    color: isListening
+                                        ? "white"
+                                        : "var(--brand-navy)",
+                                }}
                             >
                                 {isListening ? "🔴" : "🎤"}
                             </ButtonText>
@@ -159,12 +184,20 @@ export default function UserPage() {
 
                 {/* Contatti rapidi e SOS */}
                 <HStack space="md" className="pb-4">
-                    <Button size="xl" className="flex-1 bg-success-500">
+                    <Button
+                        size="xl"
+                        className="flex-1"
+                        style={{ backgroundColor: "var(--brand-navy)" }}
+                    >
                         <ButtonText className="text-xl">
                             📞 Chiama famiglia
                         </ButtonText>
                     </Button>
-                    <Button size="xl" className="flex-1 bg-error-600">
+                    <Button
+                        size="xl"
+                        className="flex-1"
+                        style={{ backgroundColor: "var(--brand-red)" }}
+                    >
                         <ButtonText className="text-xl">🚨 SOS</ButtonText>
                     </Button>
                 </HStack>

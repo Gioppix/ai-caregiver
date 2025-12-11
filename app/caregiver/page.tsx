@@ -6,6 +6,7 @@ import { HStack } from "@/components/ui/hstack";
 import { Card } from "@/components/ui/card";
 import { Badge, BadgeText } from "@/components/ui/badge";
 import Link from "next/link";
+import Image from "next/image";
 
 // Dati hardcoded
 const paziente = {
@@ -88,31 +89,54 @@ export default function CaregiverDashboard() {
             <VStack space="xl">
                 {/* Header */}
                 <HStack className="justify-between items-center">
-                    <VStack space="xs">
-                        <Text className="text-typography-900 font-bold text-3xl">
-                            Dashboard Caregiver
-                        </Text>
-                        <Text className="text-typography-600 text-lg">
-                            {new Date().toLocaleDateString("it-IT", {
-                                weekday: "long",
-                                day: "numeric",
-                                month: "long",
-                                year: "numeric",
-                            })}
-                        </Text>
-                    </VStack>
+                    <HStack space="md" className="items-center">
+                        <Image
+                            src="/logo.svg"
+                            alt="AI Caregiver"
+                            width={60}
+                            height={60}
+                        />
+                        <VStack space="xs">
+                            <Text
+                                className="font-bold text-3xl"
+                                style={{ color: "var(--brand-navy)" }}
+                            >
+                                Dashboard Caregiver
+                            </Text>
+                            <Text className="text-typography-600 text-lg">
+                                {new Date().toLocaleDateString("it-IT", {
+                                    weekday: "long",
+                                    day: "numeric",
+                                    month: "long",
+                                    year: "numeric",
+                                })}
+                            </Text>
+                        </VStack>
+                    </HStack>
                     <Link href="/caregiver/gestione-medicine">
-                        <Button size="lg" className="bg-primary-600">
+                        <Button
+                            size="lg"
+                            style={{ backgroundColor: "var(--brand-red)" }}
+                        >
                             <ButtonText>⚙️ Gestisci Medicine</ButtonText>
                         </Button>
                     </Link>
                 </HStack>
 
                 {/* Info Paziente */}
-                <Card className="p-6 bg-primary-50 border border-primary-200">
+                <Card
+                    className="p-6 border-2"
+                    style={{
+                        backgroundColor: "#f8f9fd",
+                        borderColor: "var(--brand-navy)",
+                    }}
+                >
                     <HStack className="justify-between items-center">
                         <VStack space="sm">
-                            <Text className="text-typography-900 font-bold text-2xl">
+                            <Text
+                                className="font-bold text-2xl"
+                                style={{ color: "var(--brand-navy)" }}
+                            >
                                 {paziente.nome}
                             </Text>
                             <Text className="text-typography-700 text-lg">
@@ -273,29 +297,55 @@ export default function CaregiverDashboard() {
                         Azioni rapide
                     </Text>
                     <HStack space="md" className="flex-wrap">
-                        <Button size="lg" className="flex-1 min-w-[200px]">
+                        <Button
+                            size="lg"
+                            className="flex-1 min-w-[200px]"
+                            style={{ backgroundColor: "var(--brand-navy)" }}
+                        >
                             <ButtonText>📅 Aggiungi appuntamento</ButtonText>
                         </Button>
                         <Button
                             size="lg"
                             variant="outline"
                             className="flex-1 min-w-[200px]"
+                            style={{
+                                borderColor: "var(--brand-red)",
+                                borderWidth: 2,
+                            }}
                         >
-                            <ButtonText>📝 Aggiungi nota</ButtonText>
+                            <ButtonText style={{ color: "var(--brand-red)" }}>
+                                📝 Aggiungi nota
+                            </ButtonText>
                         </Button>
                         <Button
                             size="lg"
                             variant="outline"
                             className="flex-1 min-w-[200px]"
+                            style={{
+                                borderColor: "var(--brand-navy)",
+                                borderWidth: 2,
+                            }}
                         >
-                            <ButtonText>👥 Gestisci team</ButtonText>
+                            <ButtonText
+                                style={{ color: "var(--brand-navy)" }}
+                            >
+                                👥 Gestisci team
+                            </ButtonText>
                         </Button>
                         <Button
                             size="lg"
                             variant="outline"
                             className="flex-1 min-w-[200px]"
+                            style={{
+                                borderColor: "var(--brand-navy)",
+                                borderWidth: 2,
+                            }}
                         >
-                            <ButtonText>📊 Visualizza report</ButtonText>
+                            <ButtonText
+                                style={{ color: "var(--brand-navy)" }}
+                            >
+                                📊 Visualizza report
+                            </ButtonText>
                         </Button>
                     </HStack>
                 </Card>

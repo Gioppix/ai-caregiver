@@ -10,6 +10,7 @@ import { Badge, BadgeText } from "@/components/ui/badge";
 import { Input, InputField } from "@/components/ui/input";
 import Link from "next/link";
 import { useState } from "react";
+import Image from "next/image";
 
 // Dati hardcoded
 const medicineIniziali = [
@@ -50,20 +51,37 @@ export default function GestioneMedicinePage() {
             <VStack space="xl">
                 {/* Header */}
                 <HStack className="justify-between items-center">
-                    <VStack space="xs">
-                        <Link href="/caregiver">
-                            <Text className="text-primary-600 text-sm">
-                                ← Torna alla dashboard
+                    <HStack space="md" className="items-start">
+                        <Image
+                            src="/logo.svg"
+                            alt="AI Caregiver"
+                            width={60}
+                            height={60}
+                        />
+                        <VStack space="xs">
+                            <Link href="/caregiver">
+                                <Text
+                                    className="text-sm font-medium"
+                                    style={{ color: "var(--brand-red)" }}
+                                >
+                                    ← Torna alla dashboard
+                                </Text>
+                            </Link>
+                            <Text
+                                className="font-bold text-3xl"
+                                style={{ color: "var(--brand-navy)" }}
+                            >
+                                Gestione Medicine e Orari
                             </Text>
-                        </Link>
-                        <Text className="text-typography-900 font-bold text-3xl">
-                            Gestione Medicine e Orari
-                        </Text>
-                        <Text className="text-typography-600">
-                            Giuseppe Rossi
-                        </Text>
-                    </VStack>
-                    <Button size="lg" className="bg-success-600">
+                            <Text className="text-typography-600">
+                                Giuseppe Rossi
+                            </Text>
+                        </VStack>
+                    </HStack>
+                    <Button
+                        size="lg"
+                        style={{ backgroundColor: "var(--brand-navy)" }}
+                    >
                         <ButtonText>+ Aggiungi Medicina</ButtonText>
                     </Button>
                 </HStack>
@@ -128,9 +146,17 @@ export default function GestioneMedicinePage() {
                                         {med.orari.map((orario, idx) => (
                                             <Card
                                                 key={idx}
-                                                className="p-4 bg-primary-50 min-w-[100px]"
+                                                className="p-4 min-w-[100px]"
+                                                style={{
+                                                    backgroundColor: "#f8f9fd",
+                                                }}
                                             >
-                                                <Text className="text-primary-700 font-bold text-xl text-center">
+                                                <Text
+                                                    className="font-bold text-xl text-center"
+                                                    style={{
+                                                        color: "var(--brand-navy)",
+                                                    }}
+                                                >
                                                     {orario}
                                                 </Text>
                                             </Card>
@@ -139,8 +165,16 @@ export default function GestioneMedicinePage() {
                                             size="sm"
                                             variant="outline"
                                             className="h-auto"
+                                            style={{
+                                                borderColor: "var(--brand-navy)",
+                                                borderWidth: 2,
+                                            }}
                                         >
-                                            <ButtonText>
+                                            <ButtonText
+                                                style={{
+                                                    color: "var(--brand-navy)",
+                                                }}
+                                            >
                                                 + Aggiungi orario
                                             </ButtonText>
                                         </Button>
@@ -244,7 +278,11 @@ export default function GestioneMedicinePage() {
                                             <HStack space="md" className="mt-2">
                                                 <Button
                                                     size="sm"
-                                                    className="flex-1 bg-success-600"
+                                                    className="flex-1"
+                                                    style={{
+                                                        backgroundColor:
+                                                            "var(--brand-navy)",
+                                                    }}
                                                 >
                                                     <ButtonText>
                                                         💾 Salva modifiche
@@ -254,11 +292,20 @@ export default function GestioneMedicinePage() {
                                                     size="sm"
                                                     variant="outline"
                                                     className="flex-1"
+                                                    style={{
+                                                        borderColor:
+                                                            "var(--brand-red)",
+                                                        borderWidth: 2,
+                                                    }}
                                                     onPress={() =>
                                                         setEditandoId(null)
                                                     }
                                                 >
-                                                    <ButtonText>
+                                                    <ButtonText
+                                                        style={{
+                                                            color: "var(--brand-red)",
+                                                        }}
+                                                    >
                                                         Annulla
                                                     </ButtonText>
                                                 </Button>
@@ -272,8 +319,17 @@ export default function GestioneMedicinePage() {
                 </VStack>
 
                 {/* Riepilogo settimanale */}
-                <Card className="p-6 bg-primary-50">
-                    <Text className="text-typography-900 font-bold text-xl mb-4">
+                <Card
+                    className="p-6 border-2"
+                    style={{
+                        backgroundColor: "#f8f9fd",
+                        borderColor: "var(--brand-navy)",
+                    }}
+                >
+                    <Text
+                        className="font-bold text-xl mb-4"
+                        style={{ color: "var(--brand-navy)" }}
+                    >
                         📊 Riepilogo settimanale
                     </Text>
                     <VStack space="md">
@@ -312,9 +368,18 @@ export default function GestioneMedicinePage() {
                 </Card>
 
                 {/* Form nuova medicina (esempio) */}
-                <Card className="p-6 bg-success-50">
+                <Card
+                    className="p-6 border-2"
+                    style={{
+                        backgroundColor: "#fff5f5",
+                        borderColor: "var(--brand-red)",
+                    }}
+                >
                     <VStack space="md">
-                        <Text className="text-typography-900 font-bold text-xl">
+                        <Text
+                            className="font-bold text-xl"
+                            style={{ color: "var(--brand-red)" }}
+                        >
                             + Aggiungi nuova medicina
                         </Text>
 
@@ -365,7 +430,11 @@ export default function GestioneMedicinePage() {
                             </Input>
                         </VStack>
 
-                        <Button size="lg" className="bg-success-600 mt-4">
+                        <Button
+                            size="lg"
+                            className="mt-4"
+                            style={{ backgroundColor: "var(--brand-red)" }}
+                        >
                             <ButtonText>💾 Salva medicina</ButtonText>
                         </Button>
                     </VStack>
