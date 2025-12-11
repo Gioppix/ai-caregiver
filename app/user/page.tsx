@@ -43,12 +43,24 @@ const contatti = [
 
 export default function UserPage() {
     const [isListening, setIsListening] = useState(false);
+    const [assistantAnswer, setAssistantAnswer] = useState("");
     const [completati, setCompletati] = useState<number[]>([]);
 
     const toggleMedicina = (id: number) => {
         setCompletati((prev) =>
             prev.includes(id) ? prev.filter((i) => i !== id) : [...prev, id],
         );
+    };
+
+    const handleAssistantPress = () => {
+        setIsListening(true);
+        setAssistantAnswer(""); // Clear previous answer
+        setTimeout(() => {
+            setIsListening(false);
+            setAssistantAnswer(
+                "Oggi devi prendere la Cardioaspirina alle 9:00, Eutirox alle 9:00 e hai una visita dal cardiologo alle 15:30.",
+            );
+        }, 3000);
     };
 
     return (
@@ -93,7 +105,7 @@ export default function UserPage() {
                                     ? "var(--brand-red)"
                                     : "white",
                             }}
-                            onPress={() => setIsListening(!isListening)}
+                            onPress={handleAssistantPress}
                         >
                             <ButtonText
                                 className="text-4xl"
@@ -109,7 +121,8 @@ export default function UserPage() {
                         <Text className="text-white text-2xl font-semibold text-center">
                             {isListening
                                 ? "Ti sto ascoltando..."
-                                : "Tocca per parlare con l'assistente"}
+                                : assistantAnswer ||
+                                  "Tocca per parlare con l'assistente"}
                         </Text>
                     </VStack>
                 </Card>
